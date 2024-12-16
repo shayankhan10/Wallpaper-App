@@ -18,8 +18,7 @@ const GenerateScreen = () => {
         setLoading(true);
         setGeneratedImage(null);  
         try {
-            
-            const response = await fetch('https://b98f-34-125-171-105.ngrok-free.app/generate-image', {
+            const response = await fetch('https://d080-35-204-232-128.ngrok-free.app/generate-image', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ prompt }),
@@ -49,6 +48,9 @@ const GenerateScreen = () => {
                 placeholder="Enter your prompt here..."
                 value={prompt}
                 onChangeText={setPrompt}
+                multiline={true}  // Allow multiline input
+                numberOfLines={4}  // Default number of lines
+                textAlignVertical="top"  // Align text at the top
             />
             <Pressable style={styles.button} onPress={handleGenerate} disabled={loading}>
                 {loading ? (
@@ -78,7 +80,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: hp(3),
         fontWeight: 'bold',
-        marginBottom: hp(2),
+        marginBottom: hp(1),
     },
     input: {
         width: '100%',
@@ -88,6 +90,7 @@ const styles = StyleSheet.create({
         borderRadius: theme.radius.lg,
         marginBottom: hp(2),
         fontSize: hp(2),
+        minHeight: hp(1),  // Ensure a minimum height
     },
     button: {
         backgroundColor: theme.colors.primary || '#4CAF50',  
@@ -111,8 +114,8 @@ const styles = StyleSheet.create({
     },
     generatedImage: {
         marginTop: hp(3),
-        width: wp(80),
-        height: hp(40),
+        width: wp(85),
+        height: hp(50),
         borderRadius: theme.radius.lg,
     },
 });
